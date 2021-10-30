@@ -17,7 +17,6 @@ public class FantasyNameGenerator {
 		
 		while (names.size() < numberOfNamesNeeded) {
 			String name = generateRandomName(letters);
-			if (!containsVowel(name)) continue;
 			if (hasTooManyConsecutiveConsonantsOrVowels(name)) continue;
 			if (hasEnoughVowels(name)) names.add(convertFirstLetterToUpper(name));
 		}
@@ -25,14 +24,6 @@ public class FantasyNameGenerator {
 		printSortedNames(names);
 	}
 	
-	private static boolean containsVowel(String name) {
-		return name.contains("a")
-			|| name.contains("e")
-			|| name.contains("i")
-			|| name.contains("o")
-			|| name.contains("u");
-	}
-
 	private static String convertFirstLetterToUpper(String name) {
 		return name.substring(0, 1).toUpperCase() + name.substring(1);
 	}
@@ -53,7 +44,7 @@ public class FantasyNameGenerator {
 		for (char c : chars) {
 			if (isVowel(c)) countVowels++;
 		}
-		return countVowels >= numberOfLettersForNames/2 && countVowels < numberOfLettersForNames;
+		return countVowels >= numberOfLettersForNames/2;
 	}
 
 	private static boolean hasTooManyConsecutiveConsonantsOrVowels(String name) {
